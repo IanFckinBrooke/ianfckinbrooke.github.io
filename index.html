@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namaste Chess Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #B36924;
+      color: #1c1c1c;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2 {
+      font-family: 'Cormorant Garamond', sans-serif;
+      color: #B36924;
+      text-align: center;
+    }
+
+    .main-content {
+      background-color: #F4F3EA;
+      margin: 0 auto;
+      max-width: 1200px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0px;
+    }
+
+    .text-left p {
+      text-align: center;
+    }
+
+    .video-background-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .video-background-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(24, 24, 24, 0.6);
+      z-index: 1;
+    }
+
+    .about-logo {
+      display: block;
+      max-width: 200px;
+      width: 100%;
+      margin: 80px auto 0 auto;
+      border-radius: 10px;
+    }
+
+    .hero {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      z-index: 2;
+      color: #F4F3EA;
+    }
+
+    .hero-heading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 10px;
+      color: #F4F3EA;
+      line-height: 1.1;
+      font-size: clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .chess-word {
+      font-size: clamp(2rem, 6vw, 2.5rem);
+      margin-top: 10px;
+      color: #F4F3EA;
+    }
+
+    .namaste-logo-img {
+      height: 100px;
+      object-fit: contain;
+      margin: 0 -6px;
+    }
+
+    .watch-button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #9A8555;
+      border: none;
+      color: #F4F3EA;
+      cursor: pointer;
+      margin-top: 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .watch-button:hover {
+      background: #B36924;
+    }
+
+    .section {
+      padding: 50px 20px;
+      background-color: #F4F3EA;
+      color: #1c1c1c;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 30px;
+    }
+
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-grid a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+      height: 150px;
+      background: transparent;
+      border: 2px solid #B36924;
+      text-decoration: none;
+      color: #B36924;
+      font-size: 40px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .social-grid a:hover {
+      background: #B36924;
+      color: #F4F3EA;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 90%;
+      max-width: 700px;
+    }
+
+    .modal iframe {
+      width: 100%;
+      height: 400px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    iframe {
+      max-width: 100%;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .social-grid a {
+        width: 100px;
+        height: 100px;
+        font-size: 30px;
+      }
+
+      .namaste-logo-img {
+        width: 300px;
+        height: auto;
+      }
+
+      .about-logo {
+        max-width: 300px;
+        margin-top: 40px;
+      }
+
+      .hero {
+        padding: 10px;
+      }
+
+      .hero-heading {
+        font-size: 1.2rem;
+      }
+
+      .chess-word {
+        font-size: 1.8rem;
+      }
+
+      .section {
+        padding: 30px 15px;
+      }
+
+      .modal iframe {
+        height: 250px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      iframe {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="video-background-container">
+    <video autoplay muted loop>
+      <source src="chess-background.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+    <div class="hero">
+      <h1 class="hero-heading">
+        <img class="namaste-logo-img" src="./logo.png" alt="Namaste Logo">
+        <div class="chess-word">CHESS</div>
+      </h1>
+    </div>
+  </div>
+
+  <div class="modal" id="videoModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="section" id="about">
+      <div class="container text-left">
+        <h2>About</h2>
+        <p>Join us every Wednesday at Namaste for our Chess Night, a free-to-play event where players of all ages and skill levels are welcome!</p>
+        <p>Whether you're a beginner or a seasoned player, it's a fun and relaxed environment to test your skills and any new strategies!</p>
+        <p>Whilst at Namaste you can enjoy a pint and a delicious serving of pakora while you play for just £10.</p>
+        <p>No need to be an expert – just come along, have fun, and maybe even learn a few new tricks!</p>
+        <img class="about-logo" src="namaste-chess-logo.png" alt="Namaste Chess Logo">
+      </div>
+    </div>
+
+    <div class="section" id="when">
+      <div class="container text-left">
+        <h2>When</h2>
+        <p>We meet every Wednesday from 6 pm at Namaste by Delhi Darbar located conveniently in the St Enoch Centre.</p>
+        <p><strong>Namaste by Delhi Darbar</strong><br>
+          1st Floor next to Vue Cinema<br>
+          G1 4BW</p>
+        <p>Parking is available in the St Enochs Car Park for £2 all night from 5pm.</p>
+      </div>
+    </div>
+
+    <div id="map" style="width: 100%;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2236.869948062576!2d-4.257716084005927!3d55.85669008057878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4888442e0ba78429%3A0xfad2a19956e2cf1e!2sSt%20Enoch%20Centre!5e0!3m2!1sen!2suk!4v1712589772648!5m2!1sen!2suk" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="section" id="instagram">
+      <h2>Instagram</h2>
+      <div class="container">
+        <script src="https://static.elfsight.com/platform/platform.js" defer></script>
+        <div class="elfsight-app-8f3fa885-97a3-48c9-a070-b2c0d4cbcb3c" data-elfsight-app-lazy></div>
+      </div>
+    </div>
+
+    <div class="section" id="contact">
+      <div class="container text-left">
+        <h2>Contact Us</h2>
+        <div class="social-grid">
+          <a href="https://www.instagram.com/namastechess/#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.chess.com/club/namaste-chess" target="_blank"><i class="fas fa-chess"></i></a>
+          <a href="https://chat.whatsapp.com/CDNkM4G2QDVAjmMhk2Wd1m" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('videoModal').style.display = 'flex';
+      document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/vapjN0HHjS8';
+    }
+    function closeModal() {
+      document.getElementById('videoModal').style.display = 'none';
+      document.getElementById('videoFrame').src = '';
+    }
+  </script>
+</body>
+
+</html>
